@@ -500,8 +500,7 @@ const closeLb=()=>lb.classList.remove('open');
 document.getElementById('lbx').onclick=closeLb;
 lb.addEventListener('click',e=>{if(e.target===lb)closeLb()});
 
-const io=new IntersectionObserver(es=>es.forEach(en=>{if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target)}}),{threshold:.12});
-document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+function reveal(){var vh=innerHeight||document.documentElement.clientHeight;document.querySelectorAll('.rv:not(.in)').forEach(function(el){if(el.getBoundingClientRect().top<vh-40)el.classList.add('in');});}addEventListener('scroll',reveal,{passive:true});addEventListener('resize',reveal);addEventListener('load',reveal);reveal();setTimeout(reveal,200);setTimeout(function(){document.querySelectorAll('.rv').forEach(function(el){el.classList.add('in');});},2500);
 
 addEventListener('scroll',()=>{document.getElementById('nav').classList.toggle('scrolled',scrollY>40)});
 </script>
